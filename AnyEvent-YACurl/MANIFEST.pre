@@ -1,0 +1,12 @@
+Changes
+MANIFEST
+Makefile.PL
+README
+YACurl.xs
+constants.inc
+curlopt-long.inc
+curlopt-off-t.inc
+curlopt-str.inc
+lib/AnyEvent/YACurl.pm
+ppport.h
+t/AnyEvent-YACurl.t

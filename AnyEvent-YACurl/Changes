@@ -1,0 +1,6 @@
+Revision history for Perl extension AnyEvent::YACurl.
+
+0.01  Mon Dec 24 11:15:52 2018
+	- original version; created by h2xs 1.23 with options
+		-A -b 5.10.0 -g -n AnyEvent::YACurl
+
