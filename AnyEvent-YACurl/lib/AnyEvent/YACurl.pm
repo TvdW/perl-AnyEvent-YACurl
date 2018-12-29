@@ -6,7 +6,7 @@ use warnings;
 
 use AnyEvent;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 require XSLoader;
 XSLoader::load('AnyEvent::YACurl', $VERSION);
