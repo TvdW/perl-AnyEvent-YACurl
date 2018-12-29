@@ -15,6 +15,12 @@ popd
 
 perl sync-symbols.pl
 
+# Clean stuff we don't need if they cause trouble
+rm -rf nghttp2-src/third-party/mruby
+find curl-src nghttp2-src -name \*.pm -delete
+find curl-src nghttp2-src -name \*.rb -delete
+find curl-src nghttp2-src -name \*.py -delete
+
 cp MANIFEST.pre MANIFEST
 find curl-src -type f >> MANIFEST
 find nghttp2-src -type f >> MANIFEST
