@@ -5,7 +5,6 @@ use strict;
 use warnings;
 
 use AnyEvent;
-use Data::Dumper;
 
 our $VERSION = '0.01';
 

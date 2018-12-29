@@ -45,9 +45,11 @@ for my $flag (@curl_wantflags) {
 WriteMakefile(
     NAME              => 'AnyEvent::YACurl',
     VERSION_FROM      => 'lib/AnyEvent/YACurl.pm', # finds $VERSION
-    PREREQ_PM         => {}, # e.g., Module::Name => 1.1
+    PREREQ_PM         => {
+        "AnyEvent" => "7.0",
+    },
     ABSTRACT_FROM     => 'lib/AnyEvent/YACurl.pm', # retrieve abstract from module
-    AUTHOR            => 'Tom van der Woerdt <tvanderwoerd@localdomain>',
+    AUTHOR            => 'Tom van der Woerdt <tvdw@cpan.org>',
     LIBS              => ["@libs"], # e.g., '-lm'
     DEFINE            => "@define", # e.g., '-DHAVE_SOMETHING'
     INC               => "-I. @inc", # e.g., '-I. -I/usr/include/other'
