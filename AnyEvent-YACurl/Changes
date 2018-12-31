@@ -1,5 +1,9 @@
 Revision history for Perl extension AnyEvent::YACurl.
 
+0.03  Mon Dec 31 2018
+    - explicitly link against c-ares to avoid using threaded cURL resolvers
+    - enable CURLOPT_CONNECT_TO
+
 0.02  Sat Dec 29 2018
     - remove a bunch of curl/nghttp2 files we ship, that confused metacpan
 
