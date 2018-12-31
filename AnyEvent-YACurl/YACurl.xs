@@ -401,6 +401,7 @@ CURLcode setopt_sv_or_croak(pTHX_ AnyEvent__YACurl__Response *request, CURLoptio
         case CURLOPT_QUOTE:
         case CURLOPT_RESOLVE:
         case CURLOPT_TELNETOPTIONS:
+        case CURLOPT_CONNECT_TO:
         {
             if (!SvROK(parameter) || SvTYPE(SvRV(parameter)) != SVt_PVAV) {
                 croak("Cannot convert %s to ARRAY reference", SvPV_nolen(parameter));

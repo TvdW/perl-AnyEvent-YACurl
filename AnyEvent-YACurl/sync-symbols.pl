@@ -51,6 +51,7 @@ CURLOPT: {
         POSTFIELDSIZE_LARGE
         COPYPOSTFIELDS
         POSTFIELDS
+        CONNECT_TO
     ),
     # Don't want: probably not useful
     qw(
@@ -68,7 +69,6 @@ CURLOPT: {
         OPENSOCKETFUNCTION
         RESOLVER_START_DATA
         RESOLVER_START_FUNCTION
-        CONNECT_TO
         CONV_FROM_NETWORK_FUNCTION
         CONV_FROM_UTF8_FUNCTION
         CONV_TO_NETWORK_FUNCTION
