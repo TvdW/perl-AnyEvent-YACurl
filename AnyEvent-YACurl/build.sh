@@ -2,12 +2,16 @@ set -eo pipefail
 
 rm -rf nghttp2-1.35.1 nghttp2-lib nghttp2-src
 rm -rf curl-7.63.0 curl-src curl-lib
+rm -rf c-ares-1.15.0 c-ares-src c-ares-lib
 
 tar -xf nghttp2-1.35.1.tar.gz
 mv nghttp2-1.35.1 nghttp2-src
 
 tar -xf curl-7.63.0.tar.gz
-mv curl-7.63.0/ curl-src
+mv curl-7.63.0 curl-src
+
+tar -xf c-ares-1.15.0.tar.gz
+mv c-ares-1.15.0 c-ares-src
 
 pushd curl-src/docs/libcurl
 perl symbols.pl > symbols.h
@@ -24,3 +28,4 @@ find curl-src nghttp2-src -name \*.py -delete
 cp MANIFEST.pre MANIFEST
 find curl-src -type f >> MANIFEST
 find nghttp2-src -type f >> MANIFEST
+find c-ares-src -type f >> MANIFEST

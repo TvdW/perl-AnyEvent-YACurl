@@ -4,6 +4,9 @@ nghttp2-*.tar.gz
 curl-src
 curl-lib
 curl-*.tar.gz
+c-ares-src
+c-ares-lib
+c-ares-*.tar.gz
 constants.inc
 curlopt-*.inc
 

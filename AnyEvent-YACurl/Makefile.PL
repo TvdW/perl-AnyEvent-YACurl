@@ -6,7 +6,28 @@ use Cwd;
 my $cwd= cwd;
 if (! -f "nghttp2-lib/lib/libnghttp2.a") {
     chdir("nghttp2-src");
-    system("./configure", "--prefix=$cwd/nghttp2-lib", "--disable-shared", "--enable-static", "--with-pic", "--enable-lib-only") and exit $?;
+    system("./configure",
+        "--prefix=$cwd/nghttp2-lib",
+        "--disable-shared",
+        "--enable-static",
+        "--with-pic",
+        "--enable-lib-only",
+    ) and exit $?;
+    system("make") and exit $?;
+    system("make", "check") and exit $?;
+    system("make", "install") and exit $?;
+    chdir("..");
+}
+
+if (! -f "c-ares-lib/lib/libcares.a") {
+    chdir("c-ares-src");
+    system("./configure",
+        "--prefix=$cwd/c-ares-lib",
+        "--disable-shared",
+        "--enable-static",
+        "--with-pic",
+        "--enable-nonblocking",
+    ) and exit $?;
     system("make") and exit $?;
     system("make", "check") and exit $?;
     system("make", "install") and exit $?;
@@ -15,7 +36,17 @@ if (! -f "nghttp2-lib/lib/libnghttp2.a") {
 
 if (! -f "curl-lib/lib/libcurl.a") {
     chdir("curl-src");
-    system("./configure", "--with-zlib", "--with-nghttp2=$cwd/nghttp2-lib", "--disable-shared", "--enable-static", "--prefix=$cwd/curl-lib", "--with-pic") and exit $?;
+    system("./configure",
+        "--with-zlib",
+        "--with-nghttp2=$cwd/nghttp2-lib",
+        "--enable-ares=$cwd/c-ares-lib",
+        "--disable-shared",
+        "--enable-static",
+        "--prefix=$cwd/curl-lib",
+        "--with-pic",
+        "--disable-threaded-resolver",
+        "--disable-pthreads",
+    ) and exit $?;
     system("make") and exit $?;
     #system("make", "test") and exit $?;
     system("make", "install") and exit $?;
