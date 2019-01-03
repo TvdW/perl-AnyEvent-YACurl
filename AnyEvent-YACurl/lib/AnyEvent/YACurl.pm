@@ -79,7 +79,7 @@ AnyEvent::YACurl - Yet Another cURL binding for AnyEvent
     use AnyEvent;
     use AnyEvent::YACurl ':constants';
 
-    my $client = AnyEvent::YACurl->new;
+    my $client = AnyEvent::YACurl->new({});
     my $condvar = AnyEvent->condvar;
     my $return_data = '';
     $client->request($condvar, {
@@ -107,6 +107,11 @@ This module provides bindings to cURL, integrated into AnyEvent.
 
 Returns a new C<AnyEvent::YACurl> object. This is essentially a binding over cURL's
 L<"multi" interface|https://curl.haxx.se/libcurl/c/libcurl-multi.html>.
+
+Its first and only argument is a required hashref containing options to control behavior, such as
+C<CURLMOPT_MAX_TOTAL_CONNECTIONS>. Refer to the actual
+L<cURL documentation|https://curl.haxx.se/libcurl/c/curl_multi_setopt.html> to find out about
+other options to pass.
 
 =item C<request>
 
