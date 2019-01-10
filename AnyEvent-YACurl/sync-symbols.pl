@@ -78,6 +78,7 @@ CURLOPT: {
         SOCKOPTDATA
         SOCKOPTFUNCTION
         OBSOLETE40
+        HTTPPOST
     ),
     # Want, just not done yet
     qw(
@@ -86,7 +87,6 @@ CURLOPT: {
         DEBUGFUNCTION
         FNMATCH_DATA
         FNMATCH_FUNCTION
-        HTTPPOST
         PROGRESSDATA
         PROGRESSFUNCTION
         SSH_KEYDATA
