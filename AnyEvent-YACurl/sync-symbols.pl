@@ -52,6 +52,7 @@ CURLOPT: {
         COPYPOSTFIELDS
         POSTFIELDS
         CONNECT_TO
+        MIMEPOST
     ),
     # Don't want: probably not useful
     qw(
@@ -86,7 +87,6 @@ CURLOPT: {
         FNMATCH_DATA
         FNMATCH_FUNCTION
         HTTPPOST
-        MIMEPOST
         PROGRESSDATA
         PROGRESSFUNCTION
         SSH_KEYDATA
