@@ -1,6 +1,6 @@
 Revision history for Perl extension AnyEvent::YACurl.
 
-0.05  unreleased
+0.05  Fri Jan 11 2019
     - Support CURLOPT_MIMEPOST
 
 0.04  Thu Jan 03 2019
