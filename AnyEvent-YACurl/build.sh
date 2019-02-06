@@ -3,6 +3,7 @@ set -eo pipefail
 rm -rf nghttp2-1.36.0 nghttp2-lib nghttp2-src
 rm -rf curl-7.64.0 curl-src curl-lib
 rm -rf c-ares-1.15.0 c-ares-src c-ares-lib
+rm -rf libbrotli-0.1.0 libbrotli-src libbrotli-lib
 
 tar -xf nghttp2-1.36.0.tar.gz
 mv nghttp2-1.36.0 nghttp2-src
@@ -12,6 +13,9 @@ mv curl-7.64.0 curl-src
 
 tar -xf c-ares-1.15.0.tar.gz
 mv c-ares-1.15.0 c-ares-src
+
+tar -xf libbrotli-0.1.0.tar.gz
+mv libbrotli-0.1.0 libbrotli-src
 
 pushd curl-src/docs/libcurl
 perl symbols.pl > symbols.h
@@ -29,3 +33,4 @@ cp MANIFEST.pre MANIFEST
 find curl-src -type f >> MANIFEST
 find nghttp2-src -type f >> MANIFEST
 find c-ares-src -type f >> MANIFEST
+find libbrotli-src -type f >> MANIFEST
