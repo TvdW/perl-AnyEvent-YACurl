@@ -1,6 +1,6 @@
 Revision history for Perl extension AnyEvent::YACurl.
 
-0.06  unreleased
+0.06  Wed Feb 06 2019
     - bump curl to 7.64.0
     - bump nghttp2 to 1.36.0
     - add libbrotli for brotli support
