@@ -17,6 +17,10 @@ mv c-ares-1.15.0 c-ares-src
 tar -xf libbrotli-0.1.0.tar.gz
 mv libbrotli-0.1.0 libbrotli-src
 
+for file in patch/*; do
+    patch -p1 < $file
+done
+
 pushd curl-src/docs/libcurl
 perl symbols.pl > symbols.h
 popd
