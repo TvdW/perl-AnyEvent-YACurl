@@ -1,15 +1,15 @@
 set -eo pipefail
 
 rm -rf nghttp2-1.38.0 nghttp2-lib nghttp2-src
-rm -rf curl-7.64.1 curl-src curl-lib
+rm -rf curl-7.65.0 curl-src curl-lib
 rm -rf c-ares-1.15.0 c-ares-src c-ares-lib
 rm -rf libbrotli-0.1.0 libbrotli-src libbrotli-lib
 
 tar -xf nghttp2-1.38.0.tar.gz
 mv nghttp2-1.38.0 nghttp2-src
 
-tar -xf curl-7.64.1.tar.gz
-mv curl-7.64.1 curl-src
+tar -xf curl-7.65.0.tar.gz
+mv curl-7.65.0 curl-src
 
 tar -xf c-ares-1.15.0.tar.gz
 mv c-ares-1.15.0 c-ares-src
