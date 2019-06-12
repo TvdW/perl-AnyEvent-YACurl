@@ -10,8 +10,6 @@ c-ares-*.tar.gz
 libbrotli-src
 libbrotli-lib
 libbrotli-*.tar.gz
-constants.inc
-curlopt-*.inc
 
 blib
 YACurl.c
