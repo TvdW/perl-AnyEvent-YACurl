@@ -292,23 +292,17 @@ int do_post_work(pTHX_ AnyEvent__YACurl* client)
         }
 
         {
-            struct CURLMsg *m = NULL;
+            int msgq;
+            struct CURLMsg *m = curl_multi_info_read(client->multi, &msgq);
 
-            client->needs_read_info = 0;
-            do {
-                int msgq;
-                m = curl_multi_info_read(client->multi, &msgq);
-                if (m && (m->msg == CURLMSG_DONE)) {
-                    CURL *e = m->easy_handle;
+            if (m && (m->msg == CURLMSG_DONE)) {
+                CURL *e = m->easy_handle;
 
-                    finish_request(aTHX_ client, e, m->data.result);
-                    curl_multi_remove_handle(client->multi, e);
+                curl_multi_remove_handle(client->multi, e);
+                finish_request(aTHX_ client, e, m->data.result);
+            }
 
-                    /* XXX: finish_request can invoke callbacks which could call us again and then call do_post_work
-                     * while we're still running, thus calling curl_multi_info_read again which can clear previous events.
-                     * Not good. */
-                }
-            } while(m);
+            client->needs_read_info = m ? 1 : 0;
         }
     }
 
