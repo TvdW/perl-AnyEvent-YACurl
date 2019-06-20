@@ -187,6 +187,36 @@ size_t mcurl_read_callback(char *buffer,
     return result;
 }
 
+int mcurl_debug_callback(CURL *handle,
+                         curl_infotype type,
+                         char *data,
+                         size_t size,
+                         void *userdata)
+{
+    dTHX;
+    dSP;
+
+    ENTER;
+    SAVETMPS;
+
+    PUSHMARK(SP);
+    EXTEND(SP, 2);
+    PUSHs(sv_2mortal(newSViv(type)));
+    PUSHs(sv_2mortal(newSVpvn(data, size)));
+    PUTBACK;
+
+    call_sv((SV*)userdata, G_DISCARD | G_VOID | G_EVAL);
+
+    SPAGAIN;
+    maybe_warn_eval(aTHX);
+    PUTBACK;
+
+    FREETMPS;
+    LEAVE;
+
+    return 0;
+}
+
 int finish_request(pTHX_ AnyEvent__YACurl* client, CURL* easy, CURLcode code)
 {
     AnyEvent__YACurl__Response *response;
@@ -413,6 +443,7 @@ CURLcode setopt_sv_or_croak(pTHX_ AnyEvent__YACurl__Response *request, CURLoptio
         case CURLOPT_WRITEFUNCTION:
         case CURLOPT_HEADERFUNCTION:
         case CURLOPT_READFUNCTION:
+        case CURLOPT_DEBUGFUNCTION:
         {
             SV* fn_copy = newSVsv(parameter);
             av_push(request->held_references, fn_copy);
@@ -431,6 +462,11 @@ CURLcode setopt_sv_or_croak(pTHX_ AnyEvent__YACurl__Response *request, CURLoptio
                 case CURLOPT_READFUNCTION: {
                     result = curl_easy_setopt(request->easy, CURLOPT_READFUNCTION, mcurl_read_callback);
                     result = curl_easy_setopt(request->easy, CURLOPT_READDATA, fn_copy);
+                    break;
+                }
+                case CURLOPT_DEBUGFUNCTION: {
+                    result = curl_easy_setopt(request->easy, CURLOPT_DEBUGFUNCTION, mcurl_debug_callback);
+                    result = curl_easy_setopt(request->easy, CURLOPT_DEBUGDATA, fn_copy);
                     break;
                 }
                 default: { result = CURLE_OK; } /* To keep compilers quiet */

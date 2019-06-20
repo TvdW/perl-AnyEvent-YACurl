@@ -43,6 +43,8 @@ CURLOPT: {
         COPYPOSTFIELDS
         POSTFIELDS
         MIMEPOST
+        DEBUGDATA
+        DEBUGFUNCTION
     ),
     # Don't want: probably not useful
     qw(
@@ -73,8 +75,6 @@ CURLOPT: {
     # Want, just not done yet
     qw(
         CURLU
-        DEBUGDATA
-        DEBUGFUNCTION
         FNMATCH_DATA
         FNMATCH_FUNCTION
         PROGRESSDATA
