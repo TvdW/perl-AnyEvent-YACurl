@@ -1,5 +1,8 @@
 Revision history for Perl extension AnyEvent::YACurl.
 
+0.10  unreleased
+    - support all future curl options that take string lists
+
 0.09  Thu May 23 2019
     - bump curl to 7.65.0
 

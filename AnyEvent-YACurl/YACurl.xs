@@ -393,16 +393,7 @@ CURLcode setopt_sv_or_croak(pTHX_ AnyEvent__YACurl__Response *request, CURLoptio
         }
 
         /* string lists */
-        case CURLOPT_HTTPHEADER:
-        case CURLOPT_PROXYHEADER:
-        case CURLOPT_HTTP200ALIASES:
-        case CURLOPT_MAIL_RCPT:
-        case CURLOPT_POSTQUOTE:
-        case CURLOPT_PREQUOTE:
-        case CURLOPT_QUOTE:
-        case CURLOPT_RESOLVE:
-        case CURLOPT_TELNETOPTIONS:
-        case CURLOPT_CONNECT_TO:
+#include "curlopt-slist.inc"
         {
             if (!SvROK(parameter) || SvTYPE(SvRV(parameter)) != SVt_PVAV) {
                 croak("Cannot convert %s to ARRAY reference", SvPV_nolen(parameter));

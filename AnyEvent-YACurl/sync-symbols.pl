@@ -34,15 +34,6 @@ CURLOPT: {
         WRITEFUNCTION
         WRITEDATA
         ERRORBUFFER
-        HTTPHEADER
-        PROXYHEADER
-        HTTP200ALIASES
-        MAIL_RCPT
-        POSTQUOTE
-        PREQUOTE
-        QUOTE
-        RESOLVE
-        TELNETOPTIONS
         HEADERDATA
         HEADERFUNCTION
         READDATA
@@ -51,7 +42,6 @@ CURLOPT: {
         POSTFIELDSIZE_LARGE
         COPYPOSTFIELDS
         POSTFIELDS
-        CONNECT_TO
         MIMEPOST
     ),
     # Don't want: probably not useful
@@ -105,6 +95,7 @@ CURLOPT: {
     open my $strings, '>', 'curlopt-str.inc';
     open my $longs, '>', 'curlopt-long.inc';
     open my $offt, '>', 'curlopt-off-t.inc';
+    open my $slists, '>', 'curlopt-slist.inc';
 
     while (<$fh>) {
         my ($option, $type, $number)= /^\s*CINIT\( (\S+), \s* (\S+), \s (\d+) \)/x;
@@ -121,6 +112,10 @@ EOC
 EOC
         } elsif ($type eq 'OFF_T') {
             print $offt <<EOC
+    case CURLOPT_$option:
+EOC
+        } elsif ($type eq 'SLISTPOINT') {
+            print $slists <<EOC
     case CURLOPT_$option:
 EOC
         } else {
