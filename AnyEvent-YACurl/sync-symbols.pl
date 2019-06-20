@@ -45,10 +45,10 @@ CURLOPT: {
         MIMEPOST
         DEBUGDATA
         DEBUGFUNCTION
+        STDERR
     ),
     # Don't want: probably not useful
     qw(
-        STDERR
         SHARE
         CLOSESOCKETDATA
         CLOSESOCKETFUNCTION

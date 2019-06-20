@@ -29,6 +29,7 @@ typedef struct {
     curl_mime *mimepost;
 
     AV *held_references;
+    FILE *redirected_stderr;
     int slists_count;
     struct curl_slist **slists;
     char errbuf[CURL_ERROR_SIZE];
@@ -436,6 +437,21 @@ CURLcode setopt_sv_or_croak(pTHX_ AnyEvent__YACurl__Response *request, CURLoptio
                 request->slists[request->slists_count] = list;
                 request->slists_count++;
             }
+            break;
+        }
+
+        /* File handles */
+        case CURLOPT_STDERR:
+        {
+            if (request->redirected_stderr) {
+                fclose(request->redirected_stderr);
+            }
+            request->redirected_stderr = fdopen(dup(SvIV(parameter)), "a");
+            if (!request->redirected_stderr) {
+                croak("Cannot set CURLOPT_STDERR: fdopen failed");
+            }
+
+            result = curl_easy_setopt(request->easy, option, request->redirected_stderr);
             break;
         }
 
@@ -880,6 +896,9 @@ DESTROY(self)
         }
         if (response->held_references) {
             SvREFCNT_dec(response->held_references);
+        }
+        if (response->redirected_stderr) {
+            fclose(response->redirected_stderr);
         }
         if (response->slists) {
             int i;
