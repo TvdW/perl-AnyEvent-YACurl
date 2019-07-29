@@ -1,6 +1,6 @@
 Revision history for Perl extension AnyEvent::YACurl.
 
-0.11  Mon Jul 29 2019
+0.11.1 Mon Jul 29 2019
     - fix build failure
 
 0.10  Mon Jul 29 2019
