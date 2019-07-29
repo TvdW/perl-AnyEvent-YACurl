@@ -1,6 +1,8 @@
 Revision history for Perl extension AnyEvent::YACurl.
 
-0.10  unreleased
+0.10  Mon Jul 29 2019
+    - bump curl to 7.65.3
+    - bump nghttp2 to 1.39.1
     - support all future curl options that take string lists
     - support CURLOPT_DEBUGFUNCTION
     - support CURLOPT_STDERR
