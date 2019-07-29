@@ -6,6 +6,7 @@ YACurl.xs
 constants.inc
 curlopt-long.inc
 curlopt-off-t.inc
+curlopt-slist.inc
 curlopt-str.inc
 lib/AnyEvent/YACurl.pm
 ppport.h
