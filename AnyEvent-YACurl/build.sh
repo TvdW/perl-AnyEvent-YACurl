@@ -1,21 +1,26 @@
 set -eo pipefail
 
-rm -rf nghttp2-1.39.1 nghttp2-lib nghttp2-src
-rm -rf curl-7.65.3 curl-src curl-lib
-rm -rf c-ares-1.15.0 c-ares-src c-ares-lib
-rm -rf libbrotli-0.1.0 libbrotli-src libbrotli-lib
+CURLVER=7.66.0
+CARESVER=1.15.0
+NGHTTP2VER=1.39.1
+BROTLIVER=0.1.0
 
-tar -xf nghttp2-1.39.1.tar.gz
-mv nghttp2-1.39.1 nghttp2-src
+rm -rf nghttp2-$NGHTTP2VER nghttp2-lib nghttp2-src
+rm -rf curl-$CURLVER curl-src curl-lib
+rm -rf c-ares-$CARESVER c-ares-src c-ares-lib
+rm -rf libbrotli-$BROTLIVER libbrotli-src libbrotli-lib
 
-tar -xf curl-7.65.3.tar.gz
-mv curl-7.65.3 curl-src
+tar -xf nghttp2-$NGHTTP2VER.tar.gz
+mv nghttp2-$NGHTTP2VER nghttp2-src
 
-tar -xf c-ares-1.15.0.tar.gz
-mv c-ares-1.15.0 c-ares-src
+tar -xf curl-$CURLVER.tar.gz
+mv curl-$CURLVER curl-src
 
-tar -xf libbrotli-0.1.0.tar.gz
-mv libbrotli-0.1.0 libbrotli-src
+tar -xf c-ares-$CARESVER.tar.gz
+mv c-ares-$CARESVER c-ares-src
+
+tar -xf libbrotli-$BROTLIVER.tar.gz
+mv libbrotli-$BROTLIVER libbrotli-src
 
 for file in patch/*; do
     patch -p1 < $file
