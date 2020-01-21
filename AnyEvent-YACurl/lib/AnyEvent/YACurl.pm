@@ -72,7 +72,7 @@ _ae_set_helpers(
 
 =head1 NAME
 
-AnyEvent::YACurl - Yet Another cURL binding for AnyEvent
+AnyEvent::YACurl - Yet Another curl binding for AnyEvent
 
 =head1 SYNOPSIS
 
@@ -97,28 +97,30 @@ AnyEvent::YACurl - Yet Another cURL binding for AnyEvent
 
 =head1 DESCRIPTION
 
-This module provides bindings to cURL, integrated into AnyEvent.
+This module provides bindings to curl, integrated into AnyEvent.
 
-=head2 AnyEvent::YACurl methods
+=head1 METHODS
+
+=head2 AnyEvent::YACurl
 
 =over
 
 =item C<new>
 
-Returns a new C<AnyEvent::YACurl> object. This is essentially a binding over cURL's
+Returns a new C<AnyEvent::YACurl> object. This is essentially a binding over curl's
 L<"multi" interface|https://curl.haxx.se/libcurl/c/libcurl-multi.html>.
 
 Its first and only argument is a required hashref containing options to control behavior, such as
 C<CURLMOPT_MAX_TOTAL_CONNECTIONS>. Refer to the actual
-L<cURL documentation|https://curl.haxx.se/libcurl/c/curl_multi_setopt.html> to find out about
+L<curl documentation|https://curl.haxx.se/libcurl/c/curl_multi_setopt.html> to find out about
 other options to pass.
 
 =item C<request>
 
 Performs a request using the client instantiated via C<new>. Takes a callback and a hashref of
-cURL options (C<CURLOPT_*>). At a minimum C<CURLOPT_URL> must be provided, but it's recommended
+curl options (C<CURLOPT_*>). At a minimum C<CURLOPT_URL> must be provided, but it's recommended
 to pass a few more arguments than that. Refer to the actual
-L<cURL documentation|https://curl.haxx.se/libcurl/c/curl_easy_setopt.html> to find out about
+L<curl documentation|https://curl.haxx.se/libcurl/c/curl_easy_setopt.html> to find out about
 other options to pass.
 
 C<request> does not return anything, but will invoke the coderef passed via C<callback> once the
@@ -149,14 +151,14 @@ callback will contain a human readable description of what went wrong.
 
 =back
 
-=head2 AnyEvent::YACurl::Response methods
+=head2 AnyEvent::YACurl::Response
 
 =over
 
 =item C<getinfo>
 
-Queries the cURL API for information about the response. Refer to the
-L<cURL documentation|https://curl.haxx.se/libcurl/c/curl_easy_getinfo.html> for possible
+Queries the curl API for information about the response. Refer to the
+L<curl documentation|https://curl.haxx.se/libcurl/c/curl_easy_getinfo.html> for possible
 C<CURLINFO_*> options.
 
 =back
