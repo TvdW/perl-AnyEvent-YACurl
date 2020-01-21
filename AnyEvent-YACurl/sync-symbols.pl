@@ -46,6 +46,8 @@ CURLOPT: {
         DEBUGDATA
         DEBUGFUNCTION
         STDERR
+        TRAILERFUNCTION
+        TRAILERDATA
     ),
     # Don't want: probably not useful
     qw(
@@ -87,8 +89,6 @@ CURLOPT: {
         CHUNK_BGN_FUNCTION
         CHUNK_DATA
         CHUNK_END_FUNCTION
-        TRAILERFUNCTION
-        TRAILERDATA
     );
 
     open my $fh, '<', 'curl-src/include/curl/curl.h';
