@@ -14,10 +14,12 @@ CONSTANTS: {
     }
 
     for my $word (sort keys %{$words{FIRST}}) {
-        next if $word =~ /
+        next if $word =~ /\A(?:
             CURL_STRICTER
             | CURL_DID_MEMORY_FUNC_TYPEDEFS
-        /x;
+            | CURLOPT
+            | CURL_WIN32
+        )\z/x;
         unless ($words{LAST}{$word}) {
             print $constants <<EOC;
         hv_stores(the_hv, "$word", newSViv($word));
@@ -98,7 +100,7 @@ CURLOPT: {
     open my $slists, '>', 'curlopt-slist.inc';
 
     while (<$fh>) {
-        my ($option, $type, $number)= /^\s*CINIT\( (\S+), \s* (\S+), \s (\d+) \)/x;
+        my ($option, $type, $number)= /^\s*CURLOPT\( CURLOPT_(\S+), \s* CURLOPTTYPE_(\S+), \s (\d+) \)/x;
         next unless $option;
         next if $curlopt_skip{$option};
 
