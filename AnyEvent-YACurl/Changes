@@ -1,6 +1,6 @@
 Revision history for Perl extension AnyEvent::YACurl.
 
-0.15  Unreleased
+0.15  Wed May 20 2020
     - bump curl to 7.70.0
     - bump c-ares to 1.16.1
 
