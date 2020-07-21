@@ -98,6 +98,7 @@ CURLOPT: {
     open my $longs, '>', 'curlopt-long.inc';
     open my $offt, '>', 'curlopt-off-t.inc';
     open my $slists, '>', 'curlopt-slist.inc';
+    open my $blobs, '>', 'curlopt-blob.inc';
 
     while (<$fh>) {
         my ($option, $type, $number)= /^\s*CURLOPT\( CURLOPT_(\S+), \s* CURLOPTTYPE_(\S+), \s (\d+) \)/x;
@@ -118,6 +119,10 @@ EOC
 EOC
         } elsif ($type eq 'SLISTPOINT') {
             print $slists <<EOC
+    case CURLOPT_$option:
+EOC
+        } elsif ($type eq 'BLOB') {
+            print $blobs <<EOC
     case CURLOPT_$option:
 EOC
         } else {

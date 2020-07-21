@@ -1,8 +1,8 @@
 set -eo pipefail
 
-CURLVER=7.70.0
+CURLVER=7.71.1
 CARESVER=1.16.1
-NGHTTP2VER=1.40.0
+NGHTTP2VER=1.41.0
 BROTLIVER=0.1.0
 
 rm -rf nghttp2-$NGHTTP2VER nghttp2-lib nghttp2-src
