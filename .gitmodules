@@ -1,3 +1,0 @@
-[submodule "AnyEvent-YACurl/libbrotli"]
-	path = AnyEvent-YACurl/libbrotli
-	url = https://github.com/bagder/libbrotli
