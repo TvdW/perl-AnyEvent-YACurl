@@ -88,6 +88,7 @@ CURLOPT: {
         STREAM_DEPENDS
         STREAM_DEPENDS_E
         XFERINFOFUNCTION
+        XFERINFODATA
         CHUNK_BGN_FUNCTION
         CHUNK_DATA
         CHUNK_END_FUNCTION
@@ -109,7 +110,7 @@ CURLOPT: {
             print $strings <<EOC;
     case CURLOPT_$option:
 EOC
-        } elsif ($type eq 'LONG') {
+        } elsif ($type eq 'LONG' or $type eq 'VALUES') {
             print $longs <<EOC
     case CURLOPT_$option:
 EOC
