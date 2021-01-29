@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 CONSTANTS: {
-    open my $fh, '<', 'curl-src/docs/libcurl/symbols.h' or die $!;
+    open my $fh, '<', 'libcurl-symbols.h' or die $!;
     open my $constants, '>', 'constants.inc' or die $!;
 
     my %words;
@@ -22,7 +22,9 @@ CONSTANTS: {
         )\z/x;
         unless ($words{LAST}{$word}) {
             print $constants <<EOC;
+#if LIBCURL_HAS($word)
         hv_stores(the_hv, "$word", newSViv($word));
+#endif
 EOC
         }
     }
@@ -108,23 +110,33 @@ CURLOPT: {
 
         if ($type eq 'STRINGPOINT') {
             print $strings <<EOC;
+#if LIBCURL_HAS(CURLOPT_$option)
     case CURLOPT_$option:
+#endif
 EOC
         } elsif ($type eq 'LONG' or $type eq 'VALUES') {
             print $longs <<EOC
+#if LIBCURL_HAS(CURLOPT_$option)
     case CURLOPT_$option:
+#endif
 EOC
         } elsif ($type eq 'OFF_T') {
             print $offt <<EOC
+#if LIBCURL_HAS(CURLOPT_$option)
     case CURLOPT_$option:
+#endif
 EOC
         } elsif ($type eq 'SLISTPOINT') {
             print $slists <<EOC
+#if LIBCURL_HAS(CURLOPT_$option)
     case CURLOPT_$option:
+#endif
 EOC
         } elsif ($type eq 'BLOB') {
             print $blobs <<EOC
+#if LIBCURL_HAS(CURLOPT_$option)
     case CURLOPT_$option:
+#endif
 EOC
         } else {
             print STDERR "Ignoring unknown option CURLOPT_$option\n";
