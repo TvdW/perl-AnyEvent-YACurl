@@ -1,6 +1,9 @@
 use 5.010000;
+use strict;
+use warnings;
 use ExtUtils::MakeMaker;
-use Cwd;
+use Config;
+use FindBin qw($Bin);
 
 my $curl_config= $ENV{CURL_CONFIG} || "curl-config";
 
@@ -29,6 +32,28 @@ for my $flag (@curl_wantflags) {
         warn "Unknown flag: $flag";
     }
 }
+
+sub find_curl_h {
+    my @all_inc;
+    for my $include (@inc) {
+        $include =~ s/\A-I//;
+        push @all_inc, $include;
+    }
+    for my $include (split /\s+/, $Config{incpth}) {
+        push @all_inc, $include;
+    }
+
+    for my $path (@all_inc) {
+        my $curl_h = "$path/curl/curl.h";
+        if (-f $curl_h) {
+            return $curl_h;
+        }
+    }
+
+    die "Could not locate a curl.h include";
+}
+
+system($^X, "$Bin/sync-curlopt.pl", find_curl_h()) and die "sync-curlopt failed";
 
 WriteMakefile(
     NAME              => 'AnyEvent::YACurl',
