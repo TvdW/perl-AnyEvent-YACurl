@@ -67,6 +67,7 @@ WriteMakefile(
     DEFINE            => "@define", # e.g., '-DHAVE_SOMETHING'
     INC               => "-I. @inc", # e.g., '-I. -I/usr/include/other'
     OBJECT            => "\$(O_FILES) @object",
+    LICENSE           => "perl_5",
     META_MERGE => {
         'meta-spec' => { version => 2 },
         resources => {
