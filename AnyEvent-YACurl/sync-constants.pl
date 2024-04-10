@@ -24,6 +24,9 @@ for my $word (sort keys %{$words{FIRST}}) {
         | CURL_AT_LEAST_VERSION
         | CURL_ISOCPP
         | CURLWARNING
+        | CURL_IGNORE_DEPRECATION
+        | CURLOPTDEPRECATED
+        | CURL_DEPRECATED
     )\z/x;
 
     print $constants <<EOC;
