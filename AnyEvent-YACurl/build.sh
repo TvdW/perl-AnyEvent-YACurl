@@ -1,6 +1,6 @@
 set -e
 
-CURLVER=8.1.2
+CURLVER=8.15.0
 [ -f curl-$CURLVER.tar.gz ] || curl --output curl-$CURLVER.tar.gz https://curl.se/download/curl-$CURLVER.tar.gz
 tar -xf curl-$CURLVER.tar.gz
 mv curl-$CURLVER curl-src

@@ -27,6 +27,7 @@ for my $word (sort keys %{$words{FIRST}}) {
         | CURL_IGNORE_DEPRECATION
         | CURLOPTDEPRECATED
         | CURL_DEPRECATED
+        | CURL_HAS_DECLSPEC_ATTRIBUTE
     )\z/x;
 
     print $constants <<EOC;
